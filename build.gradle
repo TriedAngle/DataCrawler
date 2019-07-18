@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
+    id 'org.beryx.jlink' version '2.10.2'
+}
+
+group 'net.strobl.datacrawler'
+version '0.1'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'mysql:mysql-connector-java:8.0.16'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['src/main/java']
+            includes = ['**/*.fxml', '**/*.css']
+        }
+    }
+}
+
+application {
+    mainClassName = 'net.strobl.Launcher'
+}
+
+javafx {
+    version = "11"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+jlink {
+    launcher {
+        name = 'DataCrawler'
+    }
+}
