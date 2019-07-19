@@ -7,5 +7,6 @@ public class Manager {
 
     Manager(App app, Stage stage){
         this.stage = stage;
+        new DataManager("", "", "", "");
     }
 }

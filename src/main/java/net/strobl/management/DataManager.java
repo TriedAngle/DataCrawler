@@ -58,7 +58,7 @@ public class DataManager {
                 break;
             default:
                 System.out.println("Case does not exist");
-                break;
+                return;
         }
 
         try {
