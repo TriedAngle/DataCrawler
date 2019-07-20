@@ -4,9 +4,14 @@ import javafx.stage.Stage;
 
 public class Manager {
     private Stage stage;
+    private DataManager dataManager;
+    private GraphicsManager graphicsManager;
 
     Manager(App app, Stage stage){
         this.stage = stage;
-        new DataManager("", "", "", "");
+        graphicsManager = new GraphicsManager(stage);
+        graphicsManager.displayHelloWorld();
+        //dataManager = new DataManager("", "", "", "");
+
     }
 }
