@@ -7,4 +7,6 @@ module datacrawler.main{
 
     opens net.strobl;
     opens net.strobl.management;
+    opens net.strobl.frontend.general;
+    opens net.strobl.frontend.windows;
 }
