@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="net.strobl.frontend.windows.MainWindowController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.strobl.frontend.windows.MainWindowController">
+   <children>
+      <Button fx:id="buttonTest" layoutX="163.0" layoutY="206.0" mnemonicParsing="false" text="Button" />
+      <Label fx:id="labelTest" layoutX="252.0" layoutY="75.0" prefHeight="16.0" prefWidth="159.0" text="Some random text" />
+   </children>
 </AnchorPane>

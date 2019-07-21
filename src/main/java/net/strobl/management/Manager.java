@@ -9,7 +9,7 @@ public class Manager {
 
     Manager(App app, Stage stage){
         this.stage = stage;
-        graphicsManager = new GraphicsManager(stage);
+        graphicsManager = new GraphicsManager(this, stage);
         graphicsManager.displayHelloWorld();
         graphicsManager.displayMainWindow();
         //dataManager = new DataManager("", "", "", "");
