@@ -28,6 +28,17 @@ class GraphicsManager {
         this.stage = stage;
     }
 
+    void setup(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/net/strobl/frontend/general/Structure.fxml"));
+            Parent root = loader.load();
+            structureController = loader.getController();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     void displayMainWindow() {
         try {
             stage.close();
