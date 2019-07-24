@@ -1,14 +1,15 @@
 package net.strobl.management;
 
 import java.sql.*;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class DataManager {
     private String databaseType;
     private String url, username, password, table;
     private String jdbcDriver;
     private Connection connection;
-    private Vector<String> columnNames = new Vector<>();
+    private ArrayList<String> columnNames = new ArrayList<>();
+    private ArrayList<String> tableNames = new ArrayList<>();
     private boolean connected;
     String home = System.getProperty("user.home");
 
@@ -66,17 +67,31 @@ public class DataManager {
     }
 
     public void readColumnNames() {
-        DatabaseMetaData metaData = null;
         try {
-            metaData = connection.getMetaData();
+            DatabaseMetaData metaData = connection.getMetaData();
             ResultSet resultSet = metaData.getColumns(null, null, table, null);
+
             while (resultSet.next()) {
                 columnNames.add(resultSet.getString(4));
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public void readTableNames() {
+        try {
+            DatabaseMetaData metaData = connection.getMetaData();
+            ResultSet resultSet = metaData.getTables(null, null, "%", null);
+
+            while (resultSet.next()) {
+                tableNames.add(resultSet.getString(3));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setCredentials(String url, String username, String password) {
@@ -100,7 +115,15 @@ public class DataManager {
         this.table = table;
     }
 
-    public boolean isConnected(){
+    public boolean isConnected() {
         return connected;
+    }
+
+    public ArrayList<String> getTableNames(){
+        return tableNames;
+    }
+
+    public ArrayList<String> getColumnNames(){
+        return columnNames;
     }
 }

@@ -26,4 +26,8 @@ public class Manager {
     boolean isConnected(){
         return dataManager.isConnected();
     }
+
+    DataManager getDataManager(){
+        return dataManager;
+    }
 }

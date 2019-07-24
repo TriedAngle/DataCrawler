@@ -54,6 +54,8 @@ class GraphicsManager {
 
         // Download Button
         mainWindowController.getButtonDownload().setOnAction(event -> {
+            manager.getDataManager().readTableNames();
+            manager.getDataManager().readColumnNames();
 
         });
     }
