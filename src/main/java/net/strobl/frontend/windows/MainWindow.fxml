@@ -38,7 +38,7 @@
          </children>
       </HBox>
       <Button fx:id="buttonConnect" layoutX="214.0" layoutY="199.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Connect" />
-      <Circle fx:id="circleConncted" fill="DODGERBLUE" layoutX="186.0" layoutY="212.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="circleConnected" fill="DODGERBLUE" layoutX="186.0" layoutY="212.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
       <Button fx:id="buttonDownload" layoutX="214.0" layoutY="240.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Download" />
    </children>
 </AnchorPane>

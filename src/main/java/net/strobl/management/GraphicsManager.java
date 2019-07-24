@@ -46,12 +46,6 @@ class GraphicsManager {
             Parent root = loader.load();
             mainWindowController = loader.getController();
 
-            mainWindowController.getButtonTest().setOnAction(event -> {
-                        clicked();
-                        mainWindowController.getLabelTest().setText(String.valueOf(rand.nextInt(50)));
-                        displayHelloWorld();
-                    }
-            );
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -63,7 +57,7 @@ class GraphicsManager {
     void clicked() {
         System.out.println("clicked");
     }
-
+    
     void displayHelloWorld() {
         Stage sStage = new Stage();
         sStage.setTitle("Hello World!");
@@ -71,7 +65,6 @@ class GraphicsManager {
         btn.setText("Say 'Hello World'");
         btn.setOnAction(event -> {
             System.out.println("Hello World!");
-            mainWindowController.getLabelTest().setText("Hello world Pressed");
         });
 
         StackPane root = new StackPane();
