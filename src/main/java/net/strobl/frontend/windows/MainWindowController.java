@@ -1,11 +1,16 @@
 package net.strobl.frontend.windows;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class MainWindowController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainWindowController implements Initializable {
     @FXML
     Button buttonConnect;
     @FXML
@@ -20,6 +25,14 @@ public class MainWindowController {
     TextField textPassword;
     @FXML
     TextField textTable;
+
+    public void setCircleColor(boolean connected) {
+        if(connected){
+            circleConnected.setFill(Color.GREEN);
+        }else {
+            circleConnected.setFill(Color.RED);
+        }
+    }
 
     public Button getButtonConnect() {
         return buttonConnect;
@@ -75,5 +88,11 @@ public class MainWindowController {
 
     public void setTextTable(TextField textTable) {
         this.textTable = textTable;
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        circleConnected.setFill(Color.GRAY);
     }
 }

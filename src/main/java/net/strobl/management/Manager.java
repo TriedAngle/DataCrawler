@@ -10,8 +10,20 @@ public class Manager {
     Manager(App app, Stage stage){
         this.stage = stage;
         graphicsManager = new GraphicsManager(this, stage);
-        graphicsManager.displayMainWindow();
-        //dataManager = new DataManager("", "", "", "");
+        graphicsManager.setup();
+        dataManager = new DataManager();
+    }
 
+    void connectToDatabase(){
+        dataManager.connect();
+    }
+
+    void setCredentials(String databaseType, String address, String username, String password, String table){
+        dataManager.setDatabaseType(databaseType);
+        dataManager.setCredentials(address, username, password, table);
+    }
+
+    boolean isConnected(){
+        return dataManager.isConnected();
     }
 }

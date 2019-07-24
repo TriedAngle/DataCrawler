@@ -21,40 +21,48 @@ class GraphicsManager {
     @FXML
     private MainWindowController mainWindowController;
 
-    Random rand = new Random();
-
     GraphicsManager(Manager manager, Stage stage) {
         this.manager = manager;
         this.stage = stage;
     }
 
-    void setup(){
+    void setup() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/net/strobl/frontend/general/Structure.fxml"));
-            Parent root = loader.load();
-            structureController = loader.getController();
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    void displayMainWindow() {
-        try {
-            stage.close();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/net/strobl/frontend/windows/MainWindow.fxml"));
+            FXMLLoader loader = loadFX("frontend/windows/MainWindow.fxml");
             Parent root = loader.load();
             mainWindowController = loader.getController();
-
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            addActions();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    void clicked() {
+    private void addActions() {
+        // Connect Button
+        String address = mainWindowController.getTextAddress().getText();
+        String username = mainWindowController.getTextUsername().getText();
+        String password = mainWindowController.getTextPassword().getText();
+        String table = mainWindowController.getTextTable().getText();
+        mainWindowController.getButtonConnect().setOnAction(event -> {
+            manager.setCredentials("PostgreSQL", address, username, password, table);
+            manager.connectToDatabase();
+            mainWindowController.setCircleColor(manager.isConnected());
+        });
+
+        // Download Button
+        mainWindowController.getButtonDownload().setOnAction(event -> {
+
+        });
+    }
+
+    private FXMLLoader loadFX(String path) {
+        return new FXMLLoader(getClass().getResource("/net/strobl/" + path));
+    }
+
+    private void clicked() {
         System.out.println("clicked");
     }
 
@@ -64,10 +72,7 @@ class GraphicsManager {
         sStage.setTitle("Hello World!");
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
-        btn.setOnAction(event -> {
-            System.out.println("Hello World!");
-        });
-
+        btn.setOnAction(event -> clicked());
         StackPane root = new StackPane();
         root.getChildren().add(btn);
         sStage.setScene(new Scene(root, 300, 250));
