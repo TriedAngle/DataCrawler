@@ -19,7 +19,7 @@ public class Bill {
     private String reason;
     private double realAmount;
 
-    public Bill(int billID, String project, int amountInCent, boolean isIntake, boolean isDigital, boolean isPaid, String dateOfOrder, String dateOfReceive, String dateOfPayment, String orderedBy, String seller, ArrayList<String> items, String reason) {
+    public Bill(int billID, String project, int amountInCent, boolean isIntake, boolean isDigital, boolean isPaid, String dateOfOrder, String dateOfReceive, String dateOfPayment, String orderedBy, String seller, String reason, ArrayList<String> items)  {
         this.billID = billID;
         this.project = project;
         this.amountInCent = amountInCent;

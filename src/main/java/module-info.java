@@ -4,6 +4,7 @@ module datacrawler.main{
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires opencsv;
 
     opens net.strobl;
     opens net.strobl.management;

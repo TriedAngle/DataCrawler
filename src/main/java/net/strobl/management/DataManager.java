@@ -13,9 +13,8 @@ public class DataManager {
     private ArrayList<String> columnNames = new ArrayList<>();
     private ArrayList<String> tableNames = new ArrayList<>();
     private boolean connected;
-    String home = System.getProperty("user.home");
 
-    DataManager() {
+    DataManager(Manager manager) {
     }
 
     DataManager(String databaseType, String url, String username, String password) {
@@ -68,6 +67,17 @@ public class DataManager {
         }
     }
 
+    public ResultSet getBillResultSet(){
+        ResultSet resultSet = null;
+        try {
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM " + table);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+    
     public void readAllBills() {
         try {
             connection.setAutoCommit(false);
@@ -87,10 +97,10 @@ public class DataManager {
                 String seller = rs.getString("seller");
                 Array sqlItemArray = rs.getArray("items");
                 String[] itemArray = (String[]) sqlItemArray.getArray();
-                ArrayList<String> observableItems = new ArrayList<>(Arrays.asList(itemArray));
+                ArrayList<String> items = new ArrayList<>(Arrays.asList(itemArray));
                 String reason = rs.getString("reason");
 
-                bills.add(new Bill(billID, project, amountInCent, isIntake, isDigital, isPaid, dateOfOrder, dateOfReceive, dateOfPayment, reason, orderedBy, seller, observableItems));
+                bills.add(new Bill(billID, project, amountInCent, isIntake, isDigital, isPaid, dateOfOrder, dateOfReceive, dateOfPayment, reason, orderedBy, seller, items));
             }
             rs.close();
             statement.close();

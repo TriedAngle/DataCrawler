@@ -54,9 +54,11 @@ class GraphicsManager {
 
         // Download Button
         mainWindowController.getButtonDownload().setOnAction(event -> {
+            manager.getDataManager().readAllBills();
             manager.getDataManager().readTableNames();
             manager.getDataManager().readColumnNames();
-
+            manager.getFileManager().setData(manager.getDataManager().getBills(), manager.getDataManager().getColumnNames());
+            manager.getFileManager().writeData();
         });
     }
 
