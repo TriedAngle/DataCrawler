@@ -57,7 +57,8 @@ class GraphicsManager {
     void clicked() {
         System.out.println("clicked");
     }
-    
+
+    @Deprecated
     void displayHelloWorld() {
         Stage sStage = new Stage();
         sStage.setTitle("Hello World!");
