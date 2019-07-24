@@ -2,12 +2,43 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.strobl.frontend.windows.MainWindowController">
+<AnchorPane prefHeight="282.0" prefWidth="309.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.strobl.frontend.windows.MainWindowController">
    <children>
-      <Button fx:id="buttonTest" layoutX="163.0" layoutY="206.0" mnemonicParsing="false" text="Button" />
-      <Label fx:id="labelTest" layoutX="252.0" layoutY="75.0" prefHeight="16.0" prefWidth="159.0" text="Some random text" />
+      <HBox layoutX="14.0" layoutY="14.0" prefHeight="181.0" prefWidth="279.0">
+         <children>
+            <VBox prefHeight="262.0" prefWidth="170.0">
+               <children>
+                  <Label text="Database Address" />
+                  <Separator prefHeight="31.0" prefWidth="140.0" visible="false" />
+                  <Label text="Username" />
+                  <Separator prefHeight="31.0" prefWidth="140.0" visible="false" />
+                  <Label text="Password" />
+                  <Separator prefHeight="31.0" prefWidth="140.0" visible="false" />
+                  <Label text="Table" />
+               </children>
+            </VBox>
+            <VBox prefHeight="262.0" prefWidth="170.0">
+               <children>
+                  <TextField />
+                  <Separator prefHeight="20.0" prefWidth="140.0" visible="false" />
+                  <TextField />
+                  <Separator prefHeight="20.0" prefWidth="140.0" visible="false" />
+                  <TextField />
+                  <Separator prefHeight="20.0" prefWidth="140.0" visible="false" />
+                  <TextField />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="buttonTest" layoutX="214.0" layoutY="199.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Connect" />
+      <Circle fill="DODGERBLUE" layoutX="186.0" layoutY="212.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button layoutX="214.0" layoutY="240.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Download" />
    </children>
 </AnchorPane>
