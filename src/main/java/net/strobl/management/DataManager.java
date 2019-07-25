@@ -3,6 +3,7 @@ package net.strobl.management;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Properties;
 
 public class DataManager {
     private String databaseType;
@@ -58,12 +59,21 @@ public class DataManager {
 
     public void connect() {
         try {
-            connection = DriverManager.getConnection(url, username, password);
+            Class.forName("org.postgresql.Driver");
+            Properties props = new Properties();
+            props.setProperty("user", username);
+            props.setProperty("password", password);
+            props.setProperty("ssl", "false");
+
+            connection = DriverManager.getConnection(url, props);
             System.out.println("successfully connected to database");
             connected = true;
         } catch (SQLException e) {
             System.out.println("could not connected to database");
+            e.printStackTrace();
             connected = false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

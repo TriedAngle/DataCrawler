@@ -42,12 +42,12 @@ class GraphicsManager {
 
     private void addActions() {
         // Connect Button
-        String address = mainWindowController.getTextAddress().getText();
-        String username = mainWindowController.getTextUsername().getText();
-        String password = mainWindowController.getTextPassword().getText();
-        String table = mainWindowController.getTextTable().getText();
         mainWindowController.getButtonConnect().setOnAction(event -> {
-            manager.setCredentials("PostgreSQL", address, username, password, table);
+            String address = mainWindowController.getTextAddress().getText();
+            String username = mainWindowController.getTextUsername().getText();
+            String password = mainWindowController.getTextPassword().getText();
+            String table = mainWindowController.getTextTable().getText();
+            manager.getDataManager().setCredentials(address, username, password, table);
             manager.connectToDatabase();
             mainWindowController.setCircleColor(manager.isConnected());
         });
