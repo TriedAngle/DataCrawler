@@ -3,6 +3,7 @@ package net.strobl.frontend.windows;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -11,6 +12,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
+
+    @FXML
+    Label labelAddress;
+    @FXML
+    Label labelUsername;
+    @FXML
+    Label labelPassword;
+    @FXML
+    Label labelTable;
+
     @FXML
     Button buttonConnect;
     @FXML

@@ -15,13 +15,13 @@
          <children>
             <VBox prefHeight="262.0" prefWidth="170.0">
                <children>
-                  <Label text="Database Address" />
+                  <Label fx:id="labelAddress" text="Database Address" />
                   <Separator prefHeight="31.0" prefWidth="140.0" visible="false" />
-                  <Label text="Username" />
+                  <Label fx:id="labelUsername" text="Username" />
                   <Separator prefHeight="31.0" prefWidth="140.0" visible="false" />
-                  <Label text="Password" />
+                  <Label fx:id="labelPassword" text="Password" />
                   <Separator prefHeight="31.0" prefWidth="140.0" visible="false" />
-                  <Label text="Table" />
+                  <Label fx:id="labelTable" text="Table" />
                </children>
             </VBox>
             <VBox prefHeight="262.0" prefWidth="170.0">
