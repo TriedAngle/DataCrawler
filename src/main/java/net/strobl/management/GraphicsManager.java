@@ -41,6 +41,12 @@ class GraphicsManager {
     }
 
     private void addActions() {
+        // Full EKS DEE MODE
+//        stage.setOnCloseRequest(event -> {
+//            stage = new Stage();
+//            setup();
+//        });
+
         // Connect Button
         mainWindowController.getButtonConnect().setOnAction(event -> {
             String address = mainWindowController.getTextAddress().getText();
@@ -55,7 +61,6 @@ class GraphicsManager {
         // Download Button
         mainWindowController.getButtonDownload().setOnAction(event -> {
             manager.getDataManager().readAllBills();
-            manager.getDataManager().readTableNames();
             manager.getDataManager().readColumnNames();
             manager.getFileManager().setData(manager.getDataManager().getBills(), manager.getDataManager().getColumnNames());
             manager.getFileManager().writeData();

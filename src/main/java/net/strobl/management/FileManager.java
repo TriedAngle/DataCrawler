@@ -3,7 +3,6 @@ package net.strobl.management;
 import com.opencsv.CSVWriter;
 
 import java.io.FileWriter;
-
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,43 +18,50 @@ public class FileManager {
     private ArrayList<Bill> bills;
     private ArrayList<String> columns;
 
-    FileManager(Manager manager){
+    FileManager(Manager manager) {
         this.manager = manager;
         dateFormat = new SimpleDateFormat("ss.mm.HH.dd.MM.yyyy");
     }
 
-    public void writeData(){
+    public void writeData() {
         try {
             Date date = new Date();
             String currentDate = dateFormat.format(date);
-            String path = "CSVDownload" + currentDate + ".csv";
+            String path = home + "/Downloads/" + "CSVDownload" + currentDate + ".csv";
             CSVWriter writer = new CSVWriter(new FileWriter(path));
 
-            writer.writeNext(columns.toArray(String[]::new));
+            String[] columnArray = {"Bill ID", "Project", "Amount in Cent", "Intake", "Digital", "Paid", "Date of Order", "Date of Receive", "Date Payment", "Ordered By", "Seller", "Products", "Reason", "(Real Amount)"};
+            String[] billAsArray = new String[14];
+            writer.writeNext(columnArray);
 
-            for(Bill bill : bills){
-                String[] billAsArray = {
-                        String.valueOf(bill.getBillID()),
-                        bill.getProject(),
-                        String.valueOf(bill.getRealAmount()),
-                        String.valueOf(bill.isIntake()),
-                        String.valueOf(bill.isDigital()),
-                        String.valueOf(bill.isPaid()),
-                        bill.getDateOfOrder(),
-                        bill.getDateOfPayment(),
-                        bill.getDateOfReceive(),
-                        bill.getOrderedBy(),
-                        bill.getReason()
-                };
+            for (Bill bill : bills) {
+                String products = String.join(System.getProperty("line.separator") , bill.getItems().toArray(String[]::new));
+                billAsArray[0] = String.valueOf(bill.getBillID());
+                billAsArray[1] = bill.getProject();
+                billAsArray[2] = String.valueOf(bill.getAmountInCent());
+                billAsArray[3] = String.valueOf(bill.isIntake());
+                billAsArray[4] = String.valueOf(bill.isDigital());
+                billAsArray[5] = String.valueOf(bill.isPaid());
+                billAsArray[6] = bill.getDateOfOrder();
+                billAsArray[7] = bill.getDateOfReceive();
+                billAsArray[8] = bill.getDateOfPayment();
+                billAsArray[9] = bill.getOrderedBy();
+                billAsArray[10] = bill.getSeller();
+                billAsArray[11] = products;
+                billAsArray[12] = bill.getReason();
+                billAsArray[13] = String.valueOf(bill.getRealAmount());
+
                 writer.writeNext(billAsArray);
             }
+            writer.flush();
+            writer.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void setData(ArrayList<Bill> bills, ArrayList<String> columns){
+    public void setData(ArrayList<Bill> bills, ArrayList<String> columns) {
         this.bills = bills;
         this.columns = columns;
     }

@@ -10,7 +10,7 @@ public class DataManager {
     private String url, username, password, table;
     private String jdbcDriver;
     private Connection connection;
-    private ArrayList<Bill> bills = new ArrayList<>();
+    private ArrayList<Bill> bills;
     private ArrayList<String> columnNames = new ArrayList<>();
     private ArrayList<String> tableNames = new ArrayList<>();
     private boolean connected;
@@ -90,6 +90,7 @@ public class DataManager {
     
     public void readAllBills() {
         try {
+            bills = new ArrayList<>();
             connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM " + table);
@@ -110,12 +111,13 @@ public class DataManager {
                 ArrayList<String> items = new ArrayList<>(Arrays.asList(itemArray));
                 String reason = rs.getString("reason");
 
-                bills.add(new Bill(billID, project, amountInCent, isIntake, isDigital, isPaid, dateOfOrder, dateOfReceive, dateOfPayment, reason, orderedBy, seller, items));
+                bills.add(new Bill(billID, project, amountInCent, isIntake, isDigital, isPaid, dateOfOrder, dateOfReceive, dateOfPayment, orderedBy, seller, reason, items));
             }
             rs.close();
             statement.close();
         } catch (Exception e) {
             System.out.println("Could not fetch bills");
+            e.printStackTrace();
             //System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
 
@@ -127,7 +129,7 @@ public class DataManager {
             ResultSet resultSet = metaData.getColumns(null, null, table, null);
 
             while (resultSet.next()) {
-                columnNames.add(resultSet.getString(4));
+                columnNames.add(resultSet.getString("COLUMN_NAME"));
             }
 
         } catch (SQLException e) {
@@ -155,15 +157,16 @@ public class DataManager {
         this.password = password;
     }
 
-    public void setDatabaseType(String databaseType) {
-        this.databaseType = databaseType;
-        setDriver();
-    }
-
     public void setCredentials(String url, String username, String password, String table) {
         this.url = url;
         this.username = username;
         this.password = password;
+        this.table = table;
+    }
+
+    public void setDatabaseType(String databaseType) {
+        this.databaseType = databaseType;
+        setDriver();
     }
 
     public void setTable(String table) {
